@@ -7,9 +7,28 @@ function Consulta() {
     const [cnpj, setCnpj] = useState('');
     const [resultado, setResultado] = useState(null);
 
+    
+    
+    
+
     async function consultarCPF() {
+
+        const validarCPF = (cpf) => {
+            // Adicione a lógica de validação de CPF aqui
+            return /^[0-9]{11}$/.test(cpf);
+        };
+        
+        const consultarCPF = () => {
+            if (validarCPF(cpf)) {
+                const url = `https://servicos.receita.fazenda.gov.br/Servicos/CPF/ConsultaSituacao/ConsultaPublica.asp?CPF=${cpf}`;
+                window.open(url, '_blank');
+            } else {
+                alert('CPF inválido');
+            }
+        };
+
         try {
-            const response = await fetch(`https://servicos.receita.fazenda.gov.br/Servicos/CPF/ConsultaSituacao/ConsultaPublica.asp${cpf}`, {
+            const response = await fetch(`https://api.example.com/cpf/${cpf}`, {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
@@ -29,8 +48,23 @@ function Consulta() {
     }
 
     async function consultarCNPJ() {
+
+        const validarCNPJ = (cnpj) => {
+            // Adicione a lógica de validação de CNPJ aqui
+            return /^[0-9]{14}$/.test(cnpj);
+        };
+
+        const consultarCNPJ = () => {
+            if (validarCNPJ(cnpj)) {
+                const url = `https://www.receitaws.com.br/v1/cnpj/${cnpj}`;
+                window.open(url, '_blank');
+            } else {
+                alert('CNPJ inválido');
+            }
+        };
+
         try {
-            const response = await fetch(`https://solucoes.receita.fazenda.gov.br/Servicos/cnpjreva/cnpjreva_Solicitacao.asp${cnpj}`, {
+            const response = await fetch(`https://api.example.com/cnpj/${cnpj}`, {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
@@ -53,22 +87,29 @@ function Consulta() {
         <div>
             <h1>Consulta de CPF e CNPJ</h1>
             <div>
-                <input
-                    type="text"
-                    value={cpf}
-                    onChange={(e) => setCpf(e.target.value)}
-                    placeholder="Digite o CPF"
-                />
-                <button onClick={consultarCPF}>Consultar CPF</button>
+                <div class="alert alert-primary" role="alert">
+                    Clique nesta TAG você será direcionado ao site da Receita Federal!!
+                </div>
+                
+                <li class="nav-item">
+                    <a class="nav-link" href="https://servicos.receita.fazenda.gov.br/Servicos/CPF/ConsultaSituacao/ConsultaPublica.asp">Consultar CPF</a>
+                </li>
+                <div class="alert alert-primary" role="alert">
+                    ==================================
+                </div>
+                <div class="alert alert-primary" role="alert">
+                    ==================================
+                </div>
+               
             </div>
             <div>
-                <input
-                    type="text"
-                    value={cnpj}
-                    onChange={(e) => setCnpj(e.target.value)}
-                    placeholder="Digite o CNPJ"
-                />
-                <button onClick={consultarCNPJ}>Consultar CNPJ</button>
+                <div class="alert alert-primary" role="alert">
+                    Clique nesta TAG você será direcionado ao site da Receita Federal!!
+                </div>
+                
+                <li class="nav-item">
+                    <a class="nav-link" href="https://servicos.receitafederal.gov.br/lista-grupo?categoria=22">Consultar CNPJ</a>
+                </li>
             </div>
             {resultado && (
                 <div>
