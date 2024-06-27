@@ -6,9 +6,6 @@ function Consulta() {
     const [cpf, setCpf] = useState('');
     const [cnpj, setCnpj] = useState('');
     const [resultado, setResultado] = useState(null);
-
-    
-    
     
 
     async function consultarCPF() {
@@ -82,34 +79,36 @@ function Consulta() {
             console.error('Erro:', error);
         }
     }
+        
 
     return (
         <div>
             <h1>Consulta de CPF e CNPJ</h1>
             <div>
                 <div class="alert alert-primary" role="alert">
-                    Clique nesta TAG você será direcionado ao site da Receita Federal!!
+                    
                 </div>
                 
                 <li class="nav-item">
-                    <a class="nav-link" href="https://servicos.receita.fazenda.gov.br/Servicos/CPF/ConsultaSituacao/ConsultaPublica.asp">Consultar CPF</a>
+                    <h4>
+                        <a class="nav-link" href="https://servicos.receita.fazenda.gov.br/Servicos/CPF/ConsultaSituacao/ConsultaPublica.asp">Consulte seu CPF</a>
+                    </h4>
                 </li>
-                <div class="alert alert-primary" role="alert">
-                    ==================================
-                </div>
-                <div class="alert alert-primary" role="alert">
-                    ==================================
-                </div>
                
             </div>
             <div>
                 <div class="alert alert-primary" role="alert">
-                    Clique nesta TAG você será direcionado ao site da Receita Federal!!
+                    
                 </div>
                 
                 <li class="nav-item">
-                    <a class="nav-link" href="https://servicos.receitafederal.gov.br/lista-grupo?categoria=22">Consultar CNPJ</a>
+                    <h4>
+                        <a class="nav-link" href="https://servicos.receitafederal.gov.br/lista-grupo?categoria=22">Consulte seu CNPJ</a>
+                    </h4>
                 </li>
+                <div class="alert alert-primary" role="alert">
+                    
+                </div>
             </div>
             {resultado && (
                 <div>
@@ -118,6 +117,7 @@ function Consulta() {
                 </div>
             )}
         </div>
+      
     );
 }
 
